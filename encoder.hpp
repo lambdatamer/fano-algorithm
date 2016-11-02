@@ -16,11 +16,13 @@ private:
 	std::map<char,int> *probMap;
 	std::string* getInputString();
 	void createProbMap(std::map<char,int> &probMap, std::string &str);
-	void createCharMap(std::map<int,char> &probMap);
 	std::vector<Character*>* createCharVector(std::map<char, int> &probMap);
+	std::map<char, std::string>* createCharMap(std::vector<Character*> &array);
+	void createBranch(int begin, int end, std::vector<Character*> &array);
+	int findBranchPoint(int begin, int end, std::vector<Character*> &array);
+	int seqProbSum(int begin, int end, std::vector<Character*> &array);
+
 public:
-	Encoder();
-	~Encoder();
 	void encode();
 	// createEncodedFile();
 
