@@ -1,0 +1,2 @@
+# fanoAlgorhytm
+# fanoAlgorithm
