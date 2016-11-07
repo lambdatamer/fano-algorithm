@@ -27,10 +27,82 @@ string* Encoder::getInputString(){
 
 	file.close();
 	
-	cout << *inStr << endl;
+	// cout << *inStr << endl;
 
 	return inStr;
 	}
+
+void writeDWordToFile(ofstream &file, int dword){
+	int* ptr = &dword;
+
+	char* c = reinterpret_cast<char*>(ptr);
+	
+	file.write(c, 4);
+} 
+
+int writeBinStringToFile(ofstream &file, string &str){
+	/*
+		Returns amount of the bytes had been written.
+	*/
+	int counter = 0;
+	bitset<8> tmp;
+	bitset<8> mask("10000000");
+	int len = str.length();
+	char* byte = reinterpret_cast<char*>(&tmp);
+
+	for(int i = 0; ; i+=8){
+		tmp.reset();
+		for(int j = i; j < len; j++){
+			if(j == i + 8){
+				break;
+			}
+			if(str[j] == '1'){
+				tmp^=mask;
+			}
+			tmp>>=1;
+		}
+		file << *byte;
+		counter++;
+		if (i > len){
+			break;
+		}
+	}
+
+	return counter;
+}
+
+void makeOutputFile(map<char,string> &charMap, string &str){
+	ofstream file;
+	file.open("files//output.fano", ios_base::binary);
+
+	writeDWordToFile(file, charMap.size());
+	
+	file.seekp(16, ios_base::beg);
+
+	string bitMap;
+	for (auto i = charMap.begin(); i != charMap.end(); i++){
+		file << i->first << static_cast<char>(i->second.length());
+		bitMap += i->second;
+	}
+
+	file.seekp(4, ios_base::beg);
+
+	writeDWordToFile(file, bitMap.length());
+
+	file.seekp(0, ios_base::end);
+
+	int bitMapLength = writeBinStringToFile(file, bitMap);
+
+	file.seekp(8, ios_base::beg);
+
+	int dataPtr = (4*4 + charMap.size() * 2 + bitMapLength);
+
+	writeDWordToFile(file, dataPtr);
+
+	file.seekp(0, ios_base::end);
+
+	file.close();
+}
 
 void Encoder::encode(){
 	auto inputStr = getInputString();
@@ -43,4 +115,6 @@ void Encoder::encode(){
 	for(auto i = cMap->begin(); i != cMap->end(); i++){
 		cout << i->first << " : " << i->second << endl;
 	}
+	makeOutputFile(*cMap, *inputStr);
 }
+

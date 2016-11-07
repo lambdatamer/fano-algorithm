@@ -12,7 +12,7 @@ template <typename T>
 std::string toString(T val)
 {
     std::ostringstream oss;
-    oss<< val;
+    oss << val;
     return oss.str();
 }
 
