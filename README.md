@@ -1,2 +1,1 @@
-# fanoAlgorhytm
 # fanoAlgorithm

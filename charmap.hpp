@@ -10,7 +10,7 @@ public:
 	Character(char _self, int _prob);
 	char self;
 	int prob;
-	std::string code;
+	string code;
 };
 
 class CharMap{

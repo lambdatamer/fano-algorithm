@@ -27,10 +27,8 @@ string* Encoder::getInputString(){
 
 	file.close();
 	
-	// cout << *inStr << endl;
-
 	return inStr;
-	}
+}
 
 void writeDWordToFile(ofstream &file, int dword){
 	int* ptr = &dword;
@@ -86,22 +84,27 @@ void makeOutputFile(map<char,string> &charMap, string &str){
 	}
 
 	file.seekp(4, ios_base::beg);
-
 	writeDWordToFile(file, bitMap.length());
 
 	file.seekp(0, ios_base::end);
-
 	int bitMapLength = writeBinStringToFile(file, bitMap);
 
 	file.seekp(8, ios_base::beg);
-
 	int dataPtr = (4*4 + charMap.size() * 2 + bitMapLength);
-
 	writeDWordToFile(file, dataPtr);
-
+	cout << dataPtr << endl;
 	file.seekp(0, ios_base::end);
 
+	auto data = new string;
+	int len = str.length();
+	for(int i = 0; i < len; i++){
+		*data += charMap.at(str[i]);
+	}
+
+	writeBinStringToFile(file, *data);
+	
 	file.close();
+	delete data;
 }
 
 void Encoder::encode(){
@@ -112,9 +115,9 @@ void Encoder::encode(){
 
 	CharMap cm(*inputStr);
 	auto cMap = cm.get();
-	for(auto i = cMap->begin(); i != cMap->end(); i++){
-		cout << i->first << " : " << i->second << endl;
-	}
+	// for(auto i = cMap->begin(); i != cMap->end(); i++){
+	// 	cout << i->first << " : " << i->second << endl;
+	// }
 	makeOutputFile(*cMap, *inputStr);
 }
 

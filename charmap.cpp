@@ -43,7 +43,6 @@ void CharMap::createCharVector(map<char, int> &probMap, vector<Character*> &vec)
 		vec.push_back(current);
 	}
 	sort(vec.rbegin(), vec.rend(), characterCompare);
-
 }
 
 map<char, string>* CharMap::createCharMap(vector<Character*> &vec){
@@ -80,7 +79,6 @@ void CharMap::createBranch(int begin, int end, vector<Character*> &vec){
 }
 
 int CharMap::findBranchPoint(int begin, int end, vector<Character*> &vec){
-
 	vector<int> differences;
 	int tmp;
 	for(int i = begin; i < end; i++){

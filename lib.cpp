@@ -21,6 +21,7 @@ string decToBin(int dec){
 		dec = tmp;
 	}
 	reverse(bin.begin(), bin.end());
+	
 	return bin;
 }
 
@@ -38,5 +39,6 @@ int binToDec(string &str){
 			}
 		}
 	}
+
 	return ret;
 }
