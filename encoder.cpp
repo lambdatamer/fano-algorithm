@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include <string>
 #include <algorithm>
@@ -10,7 +11,83 @@
 
 using namespace std;
 
+//Simply opens the file.
+//The file must be txt.
+ifstream* Encoder::openFile(string &_fileName){
+	ifstream* file;
+	try{
+		if(_fileName.substr(_fileName.length() - 4, 4) != ".txt"){
+			throw 1;
+		}
+		
+		file = new ifstream(_fileName);
+		
+		if(!file->is_open()){
+			throw 2;
+		}
+
+	}catch(int e){
+		switch (e){
+			case 1:
+				cout << "The program works only with txt files." << endl;
+				exit(1);
+			case 2:
+				cout << "Error while opening file." << endl;
+				exit(1);
+		}
+	}
+
+	return file;
+}
+
+//Return a string readed from _file
+string* Encoder::createStringFromInputFile(ifstream *_file){
+	ifstream &file = *_file;
+	char tmp = file.get();
+	auto inputString = new string;
+
+	while(true){
+		tmp = file.get();
+		if(file.eof()) break;
+		*inputString += tmp;
+	};
+
+	file.close();
+	
+	return inputString;
+}
+
+//Creates encoded file
+void Encoder::encode(char *_fileName){
+	string fileName(_fileName);
+
+	auto file = openFile(fileName); 
+	auto inputString = createStringFromInputFile(file);
+
+	CharMap charmap(*inputString);
+
+	//DONT FORGET DELETE INPUTSTRING AFTER ENCODING
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// OLD
+
+// Read input file, and return its content as a string
 string* Encoder::getInputString(){
+	
 	ifstream file;
 	file.open("files//input.txt", ios_base::in);
 	
@@ -30,7 +107,8 @@ string* Encoder::getInputString(){
 	return inStr;
 }
 
-void writeDWordToFile(ofstream &file, int dword){
+//Writes int value to file as four chars
+void Encoder::writeDWordToFile(ofstream &file, int dword){
 	int* ptr = &dword;
 
 	char* c = reinterpret_cast<char*>(ptr);
@@ -38,10 +116,9 @@ void writeDWordToFile(ofstream &file, int dword){
 	file.write(c, 4);
 } 
 
-int writeBinStringToFile(ofstream &file, string &str){
-	/*
-		Returns amount of the bytes had been written.
-	*/
+//Writes the string containing the '0's and '1's in the file
+//Returns amount of the bytes had been written
+int Encoder::writeBinStringToFile(ofstream &file, string &str){
 	int counter = 0;
 	bitset<8> tmp;
 	bitset<8> mask("10000000");
@@ -69,7 +146,8 @@ int writeBinStringToFile(ofstream &file, string &str){
 	return counter;
 }
 
-void makeOutputFile(map<char,string> &charMap, string &str){
+//Creates and writes the header and encoded string in the file
+void Encoder::makeOutputFile(map<char,string> &charMap, string &str){
 	ofstream file;
 	file.open("files//output.fano", ios_base::binary);
 
@@ -92,7 +170,6 @@ void makeOutputFile(map<char,string> &charMap, string &str){
 	file.seekp(8, ios_base::beg);
 	int dataPtr = (4*4 + charMap.size() * 2 + bitMapLength);
 	writeDWordToFile(file, dataPtr);
-	cout << dataPtr << endl;
 	file.seekp(0, ios_base::end);
 
 	auto data = new string;
@@ -107,17 +184,18 @@ void makeOutputFile(map<char,string> &charMap, string &str){
 	delete data;
 }
 
-void Encoder::encode(){
-	auto inputStr = getInputString();
-	if (inputStr->length() == 0){
-		return;
-	}
+//Creates encoded file
+// void Encoder::encode(){
+// 	auto inputStr = getInputString();
+// 	if (inputStr->length() == 0){
+// 		return;
+// 	}
 
-	CharMap cm(*inputStr);
-	auto cMap = cm.get();
-	// for(auto i = cMap->begin(); i != cMap->end(); i++){
-	// 	cout << i->first << " : " << i->second << endl;
-	// }
-	makeOutputFile(*cMap, *inputStr);
-}
+// 	CharMap cm(*inputStr);
+// 	auto cMap = cm.get();
+// 	// for(auto i = cMap->begin(); i != cMap->end(); i++){
+// 	// 	cout << i->first << " : " << i->second << endl;
+// 	// }
+// 	makeOutputFile(*cMap, *inputStr);
+// }
 

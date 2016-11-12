@@ -17,14 +17,14 @@ class CharMap{
 private:
 	map<char, string>* self;
 
-	void createProbMap(map<char,int> &probMap, string &str);
-	void createCharVector(map<char, int> &probMap, vector<Character*> &vec);
-	map<char, string>* createCharMap(vector<Character*> &vec);
-	void createBranch(int begin, int end, vector<Character*> &vec);
-	int findBranchPoint(int begin, int end, vector<Character*> &vec);
-	int seqProbSum(int begin, int end, vector<Character*> &vec);
-
+	map<char, int>* createProbmap(string &_inputString);
+	vector<Character*>* createCharVector(map<char, int> &_probMap);
+	map<char, string>* createCharmap(vector<Character*> &_charVector);
+	void createBranch(int _begin, int _end, vector<Character*> &_vec);
+	int findSplitPoint(int _begin, int _end, vector<Character*> &_vec);
+	int seqProbSum(int _begin, int _end, vector<Character*> &_vec);
 public:
-	CharMap(string &inputStr);
+	CharMap(string &_inputString);
 	map<char, string>* get();
+	void log();
 };

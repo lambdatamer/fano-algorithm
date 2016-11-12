@@ -3,8 +3,12 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
 	Encoder enc;
-	enc.encode();
+	if(argc < 2){
+		cout << "help" << endl;
+	}else{
+		enc.encode(argv[1]);
+	}
 	return 0;
 }
