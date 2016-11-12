@@ -3,7 +3,7 @@ CFLAGS=-c -std=c++11
 LDFLAGS=
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=exec
+EXECUTABLE=fano
 REM=$(wildcard *.o)
 
 all: clean $(SOURCES) $(EXECUTABLE)

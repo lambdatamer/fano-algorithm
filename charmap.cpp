@@ -33,7 +33,7 @@ CharMap::CharMap(string &_inputString){
 	}
 }
 
-//Creates probMap sorted by alphabet
+// Creates probMap sorted by alphabet
 map<char, int>* CharMap::createProbmap(string &_inputString){
 	int length = _inputString.length();
 	auto probMap = new map<char, int>;
@@ -51,12 +51,12 @@ map<char, int>* CharMap::createProbmap(string &_inputString){
 	return probMap;
 }
 
-//The compare function for sort in createCharVector
+// The compare function for sort in createCharVector
 bool characterCompare(Character* _first, Character* _second){
 	return _first->prob < _second->prob;
 }
 
-//Creates the charVector and sort it by probability
+// Creates the charVector and sort it by probability
 vector<Character*>* CharMap::createCharVector(map<char, int> &_probMap){
 	auto charVector = new vector<Character*>;
 
@@ -70,7 +70,7 @@ vector<Character*>* CharMap::createCharVector(map<char, int> &_probMap){
 	return charVector;
 }
 
-//Creates the complete charmap sorted by alphabet
+// Creates the complete charmap sorted by alphabet
 map<char, string>* CharMap::createCharmap(vector<Character*> &_charVector){
 	createBranch(0, _charVector.size(), _charVector);
 
@@ -87,13 +87,13 @@ map<char, string>* CharMap::createCharmap(vector<Character*> &_charVector){
 	return charMap;
 }
 
-//Recursively creates a binary tree 
+// Recursively creates a binary tree 
 void CharMap::createBranch(int _begin, int _end, vector<Character*> &_vec){
 	if(_end == _begin){
 		return;
 	}
 
-	int point = findSplitPoint(_begin, _end, _vec);
+	int point = findBranchingPoint(_begin, _end, _vec);
 
 	for(int i = _begin; i < point; i++){
 		_vec[i]->code += "0";
@@ -110,8 +110,8 @@ void CharMap::createBranch(int _begin, int _end, vector<Character*> &_vec){
 	}
 }
 
-//finds point between two branches with related probability
-int CharMap::findSplitPoint(int _begin, int _end, vector<Character*> &_vec){
+// Finds a branching point of two branches with related probability
+int CharMap::findBranchingPoint(int _begin, int _end, vector<Character*> &_vec){
 	vector<int> differences;
 	int tmp;
 	for(int i = _begin; i < _end; i++){
@@ -121,7 +121,7 @@ int CharMap::findSplitPoint(int _begin, int _end, vector<Character*> &_vec){
 		}
 		differences.push_back(tmp);
 	}
-	
+
 	int difference = differences[0],
 			index = 0;
 	for(int i = 1; i < differences.size(); i++){
@@ -134,7 +134,7 @@ int CharMap::findSplitPoint(int _begin, int _end, vector<Character*> &_vec){
 	return _begin + index;
 }
 
-//Returns sum of probabilities of chars between _begin_ and _end_ in _vec_.
+// Returns sum of probabilities of chars between _begin_ and _end_ in _vec_.
 int CharMap::seqProbSum(int _begin, int _end, vector<Character*> &_vec){
 	int sum = 0;
 	for(int i = _begin; i < _end; i++){
@@ -144,12 +144,12 @@ int CharMap::seqProbSum(int _begin, int _end, vector<Character*> &_vec){
 	return sum;
 }
 
-//Simply returns charmap
+// Simply returns charmap
 map<char, string>* CharMap::get(){
 	return self;
 }
 
-//Prints charmap to console
+// Prints charmap to console
 void CharMap::log(){
 	for(auto character: *self){
 		cout << "'" << character.first << "' : " << character.second << endl;

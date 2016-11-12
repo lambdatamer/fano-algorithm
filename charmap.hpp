@@ -21,7 +21,7 @@ private:
 	vector<Character*>* createCharVector(map<char, int> &_probMap);
 	map<char, string>* createCharmap(vector<Character*> &_charVector);
 	void createBranch(int _begin, int _end, vector<Character*> &_vec);
-	int findSplitPoint(int _begin, int _end, vector<Character*> &_vec);
+	int findBranchingPoint(int _begin, int _end, vector<Character*> &_vec);
 	int seqProbSum(int _begin, int _end, vector<Character*> &_vec);
 public:
 	CharMap(string &_inputString);

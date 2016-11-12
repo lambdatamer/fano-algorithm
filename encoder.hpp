@@ -10,16 +10,9 @@ class Encoder{
 private:
 	ifstream* openFile(string &_fileName);
 	string* createStringFromInputFile(ifstream *_file);
-	//Old
-	string* getInputString();
-	void writeDWordToFile(ofstream &file, int dword);
-	int writeBinStringToFile(ofstream &file, string &str);
-	void makeOutputFile(map<char,string> &charMap, string &str);
+	void makeOutputFile(map<char,string> &_charMap, string &_inputString);
+	void writeDWordToFile(ofstream &_file, int _dword);
+	int writeBinStringToFile(ofstream &_file, string &_inputString);
 public:
 	void encode(char *_fileName);
-	//Old
-	// void encode();
 };
-
-
-
