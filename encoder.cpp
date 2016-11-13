@@ -43,7 +43,7 @@ ifstream* Encoder::openFile(string &_fileName){
 // Return a string readed from _file
 string* Encoder::createStringFromInputFile(ifstream *_file){
 	ifstream &file = *_file;
-	char tmp = file.get();
+	char tmp;
 	auto inputString = new string;
 
 	while(true){
@@ -64,11 +64,10 @@ void Encoder::encode(char *_fileName){
 	auto file = openFile(fileName); 
 	auto inputString = createStringFromInputFile(file);
 
-	CharMap charmap(*inputString);
+	CharMap charmap;
 
-	makeOutputFile(*(charmap.get()), *inputString);
-
-	// DONT FORGET DELETE INPUTSTRING AFTER ENCODING
+	makeOutputFile(*(charmap.createFromText(*inputString)), *inputString);
+	delete inputString;
 }
 
 // Creates and writes the header and encoded string in the file
@@ -105,7 +104,6 @@ void Encoder::makeOutputFile(map<char,string> &_charMap, string &_inputString){
 
 	writeBinStringToFile(file, *data);
 
-
 	file.close();
 	delete data;
 }
@@ -123,28 +121,22 @@ void Encoder::writeDWordToFile(ofstream &_file, int _dword){
 // Returns amount of the bytes had been written
 int Encoder::writeBinStringToFile(ofstream &_file, string &_inputString){
 	int counter = 0;
-	bitset<8> tmp;
-	bitset<8> mask("10000000");
 	int len = _inputString.length();
-	char* byte = reinterpret_cast<char*>(&tmp);
+	string buf;
+	bitset<8> byte;
+	auto bytePtr = &byte;
+	char* c = reinterpret_cast<char*>(bytePtr);
 
-	for(int i = 0; ; i+=8){
-		tmp.reset();
-		for(int j = i; j < len; j++){
-			if(j == i + 8){
-				break;
+	for(int i = 0; i < len ; i+=8){
+		byte = byte.reset();	
+		buf = _inputString.substr(i, 8);
+		for(int j = 0; j < 8; j++){
+			if(j > buf.length()) break;
+			if(buf[j] == '1'){
+				byte[7 - j] = 1;
 			}
-			if(_inputString[j] == '1'){
-				tmp^=mask;
-			}
-			tmp>>=1;
 		}
-		_file << *byte;
-		counter++;
-		if (i > len){
-			break;
-		}
+		_file << *c;
 	}
-
 	return counter;
 }

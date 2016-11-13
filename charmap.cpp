@@ -23,16 +23,6 @@ Character::Character(char _self, int _prob){
 	CharMap
 */
 
-CharMap::CharMap(string &_inputString){
-	if(_inputString.length()!= 0){
-		auto probMap = createProbmap(_inputString);
-		auto charVector = createCharVector(*probMap);
-		delete probMap;
-		self = createCharmap(*charVector);
-		delete charVector;
-	}
-}
-
 // Creates probMap sorted by alphabet
 map<char, int>* CharMap::createProbmap(string &_inputString){
 	int length = _inputString.length();
@@ -71,18 +61,26 @@ vector<Character*>* CharMap::createCharVector(map<char, int> &_probMap){
 }
 
 // Creates the complete charmap sorted by alphabet
-map<char, string>* CharMap::createCharmap(vector<Character*> &_charVector){
-	createBranch(0, _charVector.size(), _charVector);
+map<char, string>* CharMap::createFromText(string &_inputString){
+	if(_inputString.length() == 0) exit(1);
+	auto probMap = createProbmap(_inputString);
+	auto charVector = createCharVector(*probMap);
+	delete probMap;
+
+	createBranch(0, charVector->size(), *charVector);
 
 	auto charMap = new map<char, string>;
-	for(int i = 0; i < _charVector.size(); i++){
+	self = charMap; 
+	for(int i = 0; i < charVector->size(); i++){
 		charMap->insert(
 			pair<char, string>(
-				_charVector[i]->self, 
-				_charVector[i]->code
+				(*charVector)[i]->self, 
+				(*charVector)[i]->code
 			)
 		);
 	}
+
+	delete charVector;
 
 	return charMap;
 }

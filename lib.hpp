@@ -2,40 +2,45 @@
 #include <iostream>
 #include <sstream>
 #include <map>
+#include <algorithm>
+
+using namespace std;
 
 template<typename T>
-void log(T &item){
-	std::cout << item << std::endl;
+void log(T &_item){
+	cout << _item << endl;
 }
 
 template <typename T>
-std::string toString(T val)
+string toString(T _val)
 {
-    std::ostringstream oss;
-    oss << val;
-    return oss.str();
+	ostringstream oss;
+	oss << _val;
+	return oss.str();
 }
 
 template<typename T> 
-T fromString(const std::string& s) 
+T fromString(const string& _string) 
 {
-  std::istringstream iss(s);
-  T res;
-  iss >> res;
-  return res;
+	istringstream iss(_string);
+	T res;
+	iss >> res;
+	return res;
 }
 
-std::string decToBin(int dec);
-int binToDec(std::string &str);
-
-template <typename A, typename B>
-std::pair<B,A> flip_pair(const std::pair<A,B> &p){
-  return std::pair<B,A>(p.second, p.first);
+template<typename A, typename B>
+pair<B,A> flip_pair(const pair<A,B> &_pair){
+	return pair<B,A>(_pair.second, _pair.first);
 }
 
-template <typename A, typename B>
-std::map<B,A> flip_map(const std::map<A,B> &src){
-  std::map<B,A> dst;
-  std::transform(src.begin(), src.end(), std::inserter(dst, dst.begin()), flip_pair<A,B>);
-  return dst;
+template<typename A, typename B>
+map<B,A> flip_map(const map<A,B> &_src){
+	map<B,A> dst;
+	transform(_src.begin(), _src.end(), inserter(dst, dst.begin()), 
+		flip_pair<A,B>);
+	return dst;
 }
+
+string decToBin(int dec);
+int binToDec(string &str);
+string charToBin(char c);

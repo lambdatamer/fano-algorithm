@@ -1,18 +1,26 @@
 #include <iostream>
+
 #include "encoder.hpp"
+#include "decoder.hpp"
 
 using namespace std;
 
+//TODO normal main func
+//improve filenames in encoder
+
+
 int main(int argc, char* argv[]){
-	Encoder enc;
-	if(argc == 3){
+	if(argc == 5){
 		if(string(argv[1]) == "-e"){
+			Encoder enc;
 			cout << "Encoding file..." << endl;
 			enc.encode(argv[2]);
-			cout << "Done." << endl;
 		}else if(string(argv[1]) == "-d"){
-			cout << "decode" << endl;
+			Decoder dec;
+			cout << "Decoding file..." << endl;
+			dec.decode(string(argv[2]), string(argv[4]));
 		}
+		cout << "Done." << endl;
 	}else if(argc > 1 && (string(argv[1]) == "--help" || string(argv[1]) == "-h")){
 		cout << "usage: fano [--help] [<mode> <ifile> [-o <ofile>]]" << endl;
 		cout << "\n\t<mode>:";
