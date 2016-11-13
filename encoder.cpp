@@ -58,22 +58,27 @@ string* Encoder::createStringFromInputFile(ifstream *_file){
 }
 
 // Creates encoded file
-void Encoder::encode(char *_fileName){
+void Encoder::encode(string &_fileName, string &_outputFileName){
 	string fileName(_fileName);
 
-	auto file = openFile(fileName); 
+	auto file = openFile(fileName);
 	auto inputString = createStringFromInputFile(file);
-
+	cout << "Encoding..." << endl;
 	CharMap charmap;
-
-	makeOutputFile(*(charmap.createFromText(*inputString)), *inputString);
+	makeOutputFile(*(charmap.createFromText(*inputString)), *inputString, _outputFileName);
+	cout << "Done." << endl;
 	delete inputString;
 }
 
 // Creates and writes the header and encoded string in the file
-void Encoder::makeOutputFile(map<char,string> &_charMap, string &_inputString){
+void Encoder::makeOutputFile(map<char,string> &_charMap, string &_inputString, string &_fileName){
+
+	if(!(_fileName.substr(_fileName.length() - 5, 5) == ".fano")){
+		_fileName += ".fano"; 
+	}
+
 	ofstream file;
-	file.open("files//output.fano", ios_base::binary);
+	file.open(_fileName, ios_base::binary);
 
 	writeDWordToFile(file, _charMap.size());
 

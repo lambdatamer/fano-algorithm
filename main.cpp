@@ -1,32 +1,52 @@
 #include <iostream>
 
+#include "main.hpp"
 #include "encoder.hpp"
 #include "decoder.hpp"
 
 using namespace std;
 
-//TODO normal main func
-//improve filenames in encoder
-
-
 int main(int argc, char* argv[]){
-	if(argc == 5){
+
+	if(argc < 2){
+		printShortHelp();
+	}else if(string(argv[1]) == "-h" 
+		|| string(argv[1]) == "--help"){
+		printHelp();
+	}else if(argc > 2){
+		string iFile(argv[2]);
 		if(string(argv[1]) == "-e"){
 			Encoder enc;
-			cout << "Encoding file..." << endl;
-			enc.encode(argv[2]);
+			if(argc > 4 && string(argv[3]) == "-o"){
+				string oFile(argv[4]);
+				enc.encode(iFile, oFile);
+			}else{
+				enc.encode(iFile, iFile);
+			}
 		}else if(string(argv[1]) == "-d"){
 			Decoder dec;
-			cout << "Decoding file..." << endl;
-			dec.decode(string(argv[2]), string(argv[4]));
+			if(argc > 4 && string(argv[3]) == "-o"){
+				string oFile(argv[4]);
+				dec.decode(iFile, oFile);
+			}else{
+				dec.decode(iFile, iFile);
+			}
+		}else{
+			printShortHelp();
 		}
-		cout << "Done." << endl;
-	}else if(argc > 1 && (string(argv[1]) == "--help" || string(argv[1]) == "-h")){
-		cout << "usage: fano [--help] [<mode> <ifile> [-o <ofile>]]" << endl;
-		cout << "\n\t<mode>:";
-		cout << " '-e\': Encode file.\n\t\t'-d': Decode file." << endl;
 	}else{
-		cout << "usage: fano [--help] [<mode> <ifile> [-o <ofile>]]" << endl;
+		printShortHelp();
 	}
+
 	return 0;
+}
+
+void printHelp(){
+	cout << "usage: fano <mode> <input> [-o <output>]" << endl;
+	cout << "\n\tmode:\t-e\tEncode file" << endl;
+	cout << "\t\t-d\tDecode file" << endl;
+}
+
+void printShortHelp(){
+	cout << "usage: fano <mode> <input> [-o <output>]" << endl;
 }

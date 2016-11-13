@@ -3,13 +3,12 @@
 #include <string>
 #include <map>
 
-#include <typeinfo>
-
 #include "lib.hpp"
 #include "decoder.hpp"
 
 using namespace std;
 
+//Prepairing the file for decoding
 ifstream* Decoder::getInputFile(string &_fileName){
 	ifstream* file;
 
@@ -37,6 +36,7 @@ ifstream* Decoder::getInputFile(string &_fileName){
 	return file;
 }
 
+//Read int value from the file
 int Decoder::getDWordFromFile(ifstream &_file){
 	char buf[4];
 	_file.read(buf, 4);
@@ -46,11 +46,14 @@ int Decoder::getDWordFromFile(ifstream &_file){
 
 void Decoder::decode(string _fileName, string _outputFileName){
 	ifstream &file = *(getInputFile(_fileName));
+	cout << "Decoding..." << endl;
 	disassembly(file);
 	decodeText(file);
 	makeOutputFile(_outputFileName);
+	cout << "Done." << endl;
 }
 
+//Processes header
 void Decoder::disassembly(ifstream &_file){
 	charMapSize = getDWordFromFile(_file);
 	bitMapLength = getDWordFromFile(_file);
@@ -60,6 +63,7 @@ void Decoder::disassembly(ifstream &_file){
 	createCharMap(_file);
 }
 
+//Reads codeLengths map required for charMap from a header of the file
 void Decoder::createCodeLengths(ifstream &_file){
 	char character, length;
 	int lengthCast;
@@ -92,6 +96,7 @@ void Decoder::createCharMap(ifstream &_file){
 	}
 }
 
+//Decodes text using charMap
 void Decoder::decodeText(ifstream &_file){
 	string &encoded = *(new string);
 	char tmp;
