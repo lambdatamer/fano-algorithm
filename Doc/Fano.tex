@@ -7,7 +7,7 @@
 \setbeamertemplate{footline}[frame number]
 
 \title{Алгоритм Шеннона --- Фано}
-\author{Сирота Александр}
+\author{Сирота Александр\newline\scriptsize github.com/nukefluke}
 \institute{\normalsize{ГУАП} \\ \scriptsize{5 факультет \\ Группа 5511}}
 \date[3pt]{\scriptsize{Санкт-Петербург, 2016}}
 
@@ -77,11 +77,13 @@
 		c(c) = 1 \qquad
 	$$
 
+	\vspace{1em}
 	Закодируем строку abacaba :
 	$$
 		c^*(abacaba) = 0001001000100
 	$$
 
+	\vspace{1em}
 	Такой код можно однозначно разбить на слова:
 	$$
 		00\ 01\ 00\ 1\ 00\ 01\ 00
@@ -103,29 +105,33 @@
 \begin{frame}
 	\frametitle{Алгоритм Фано: Этап 1}
 	Символы первичного алфавита выписывают по убыванию вероятностей.
-	\newline\newline
-	\centerline{\includegraphics[height=8em]{alg0.png}}
+	
+	\vspace{1em}
+	\includegraphics[height=10em]{alg0.png}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Алгоритм Фано: Этап 2}
 	Символы полученного алфавита делят на две части, суммарные вероятности символов которых максимально близки друг другу.
-	\newline\newline
-	\centerline{\includegraphics[height=8em]{alg1.png}}
+	
+	\vspace{1em}
+	\includegraphics[height=10em]{alg1.png}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Алгоритм Фано: Этап 3}
 	В префиксном коде для первой части алфавита присваивается двоичная цифра «0», второй части — «1».
-	\newline\newline
-	\centerline{\includegraphics[height=8em]{alg2.png}}
+	
+	\vspace{1em}
+	\includegraphics[height=10em]{alg2.png}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Алгоритм Фано: Этап 4}
 	Полученные части рекурсивно делятся и их частям назначаются соответствующие двоичные цифры в префиксном коде.
-	\newline\newline
-	\centerline{\includegraphics[height=8em]{alg3.png}}
+	
+	\vspace{1em}
+	\includegraphics[height=10em]{alg3.png}
 \end{frame}
 
 \begin{frame}
@@ -152,7 +158,8 @@
 		\includegraphics[width=\textwidth, trim= 20 20 50 15, clip=true]{tree.png}
 		\end{minipage}
 	\raggedright{Полученные коды:}
-	\newline\newline
+	
+	\vspace{1em}
 	\begin{minipage}[b]{\textwidth}
 		\includegraphics[width=\textwidth]{tree_code.png}
 	\end{minipage}
@@ -161,6 +168,11 @@
 
 \begin{frame}
 	\frametitle{Реализация}
+
+	\begin{block}{Репозиторий на github}
+		https://github.com/nukefluke/text-compressor
+	\end{block}
+	\vspace{1em}
 	Особенности реализации:
 	\begin{itemize}
 		\item Простота
@@ -191,9 +203,11 @@
 \begin{frame}
 	\frametitle{Пример сгенерированного словаря}
 	Для фразы:
-	\newline\newline
+
+	\vspace{1em}
 	\scriptsize{\textit{<<Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit sint cupiditate magni, illo officia facere magnam, ad pariatur ipsum explicabo sit nostrum aliquid nisi necessitatibus natus temporibus. Ut, optio, odit.>>}}
-	\newline\newline
+
+	\vspace{1em}
 	\centerline{\includegraphics[height=20em]{gen.png}}
 \end{frame}
 
@@ -215,6 +229,14 @@
 		\item Создание шапки для закодированного файла: $O(c)$
 		\item Запись закодированных данных в файл: $O(n)$
 	\end{itemize}
+	Раскодирование файла:\\ 
+	\begin{itemize}
+		\item Чтение шапки: $O(c)$
+		\item Создание таблицы кодировки: $O(c)$
+		\item Раскодирование: $O(n)$
+		\item Запись раскодированных данных в файл: $O(n)$
+	\end{itemize}
+	
 	Итоговая сложность --- линейная $O(n)$
 \end{frame}
 
