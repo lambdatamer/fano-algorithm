@@ -11,9 +11,6 @@
 \institute{\normalsize{ГУАП} \\ \scriptsize{5 факультет \\ Группа 5511}}
 \date[3pt]{\scriptsize{Санкт-Петербург, 2016}}
 
-
-\makeatother
-
 \begin{document}
 \begin{frame}
 	\titlepage
@@ -27,13 +24,19 @@
 		\begin{itemize}
 			\item Коды переменной длины
 			\item Префиксный код
-			\item Пример кодирования
+			\item Пример префиксного кодирования
 		\end{itemize}
 		\item Основные этапы
-		\item Алгоритм вычисления кодов
+		\item Построение кодового дерева
 		\begin{itemize}
+			\item Алгоритм
 			\item Пример кодового дерева
-			\item Пример сгенерированного словаря
+		\end{itemize}
+		\item Реализация
+		\begin{itemize}
+			\item Особенности
+			\item Интерфейс
+			\item Эффективность
 		\end{itemize}
 		\item Оценка сложности
 	\end{enumerate}
@@ -63,7 +66,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Пример кодирования}
+	\frametitle{Пример префиксного кодирования}
 	$$
 		U = \mathcal {f} a, b, c \mathcal {g}
 	$$$$
@@ -126,17 +129,7 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{Вычисление кодов}
-	Особенности реализации:
-	\begin{itemize}
-		\item Простота
-		\item Низкая сложность
-		\item Иногда коды строятся неоптимально
-		\item Необходимо дописывать шапку в файл
-	\end{itemize}
-\end{frame}
-\begin{frame}
-	\frametitle{Вычисление кодов}
+	\frametitle{Построение кодового дерева}
 	Алгоритм:
 	\begin{itemize}
 		\item Код Шеннона — Фано строится с помощью бинарного дерева
@@ -149,17 +142,50 @@
 
 \begin{frame}
 	\frametitle{Пример кодового дерева}
-	Исходные символы:
+		
+	\begin{figure}
+		\begin{minipage}{0.25\textwidth}
+		\raggedright{\scriptsize{Исходные символы:}}
+		\includegraphics[width=\textwidth]{tree_sym.png}
+		\end{minipage}
+		\begin{minipage}{0.74\textwidth}
+		\includegraphics[width=\textwidth, trim= 20 20 50 15, clip=true]{tree.png}
+		\end{minipage}
+	\raggedright{Полученные коды:}
 	\newline\newline
-	\centerline{\includegraphics[height=8em]{tree_sym.png}}
+	\begin{minipage}[b]{\textwidth}
+		\includegraphics[width=\textwidth]{tree_code.png}
+	\end{minipage}
+	\end{figure}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Пример кодового дерева}
-	\centerline{\includegraphics[height=14em]{tree.png}}
-	Полученные коды:
-	\newline\newline
-	\centerline{\includegraphics[height=2em]{tree_code.png}}
+	\frametitle{Реализация}
+	Особенности реализации:
+	\begin{itemize}
+		\item Простота
+		\item Низкая сложность
+		\item Иногда коды строятся неоптимально
+		\item Необходимо дописывать шапку в файл
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Интерфейс}
+	\begin{block}{Запуск программы}
+		\$ ./fano <mode> <input> [ -o <output> ]
+	\end{block}
+	\begin{exampleblock}{<mode>}
+		\textbf{'-e'} --- кодирование. Расширение входного файла \textbf{.txt}\\
+		\textbf{'-d'} --- раскодирование. Расширение входного файла \textbf{.fano}
+	\end{exampleblock}
+	\begin{exampleblock}{<input>}
+		Входной файл.
+	\end{exampleblock}
+	\begin{exampleblock}{<output>}
+		Выходной файл. Если не указан, то будет 
+		использовано имя входного файла + расширение.
+	\end{exampleblock}
 \end{frame}
 
 \begin{frame}
@@ -169,6 +195,15 @@
 	\scriptsize{\textit{<<Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit sint cupiditate magni, illo officia facere magnam, ad pariatur ipsum explicabo sit nostrum aliquid nisi necessitatibus natus temporibus. Ut, optio, odit.>>}}
 	\newline\newline
 	\centerline{\includegraphics[height=20em]{gen.png}}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Эффективность}
+		При сжатии текстового файла, содержащего один миллион слов~(7,6~Мб), 
+		получился файл размером 4Мб. Эффективность сжатия - 47\%.\newline
+
+		\centering
+		\includegraphics[width=0.8\textwidth]{compare.png}
 \end{frame}
 
 \begin{frame}
