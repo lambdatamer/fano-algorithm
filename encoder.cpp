@@ -16,7 +16,7 @@ using namespace std;
 ifstream* Encoder::openFile(string &_fileName){
 	ifstream* file;
 	try{
-		if(_fileName.substr(_fileName.length() - 4, 4) != ".txt"){
+		if(_fileName.length() > 5 && _fileName.substr(_fileName.length() - 4, 4) != ".txt"){
 			throw 1;
 		}
 

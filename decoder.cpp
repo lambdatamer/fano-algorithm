@@ -13,7 +13,7 @@ ifstream* Decoder::getInputFile(string &_fileName){
 	ifstream* file;
 
 	try{
-		if(_fileName.substr(_fileName.length() - 5, 5) != ".fano"){
+		if(_fileName.length() > 6 && _fileName.substr(_fileName.length() - 5, 5) != ".fano"){
 			throw 1;
 		}
 
