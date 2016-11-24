@@ -1,4 +1,5 @@
 #include <iostream>
+#include <clocale>
 
 #include "main.hpp"
 #include "encoder.hpp"
@@ -7,6 +8,8 @@
 using namespace std;
 
 int main(int argc, char* argv[]){
+
+	setlocale(LC_CTYPE, "rus");
 
 	if(argc < 2){
 		printShortHelp();

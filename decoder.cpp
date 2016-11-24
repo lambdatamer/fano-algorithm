@@ -120,10 +120,8 @@ void Decoder::decodeText(ifstream &_file){
 }
 
 void Decoder::makeOutputFile(string &_fileName){
-	if(!(_fileName.substr(_fileName.length() - 4, 4) == ".txt")){
-		_fileName += ".txt"; 
-	}
-	ofstream file(_fileName);
+	ofstream file;
+	file.open(_fileName, ios_base::binary);
 	file << decodedText;
 	file.close();
 }

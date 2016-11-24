@@ -14,28 +14,13 @@ using namespace std;
 // Simply opens the file.
 // The argument be text file with txt ext.
 ifstream* Encoder::openFile(string &_fileName){
-	ifstream* file;
-	try{
-		if(_fileName.length() > 5 && _fileName.substr(_fileName.length() - 4, 4) != ".txt"){
-			throw 1;
-		}
-
-		file = new ifstream(_fileName);
-		
-		if(!file->is_open()){
-			throw 2;
-		}
-
-	}catch(int e){
-		switch (e){
-			case 1:
-				cout << "The program works only with txt files." << endl;
-				exit(1);
-			case 2:
-				cout << "Error while opening file." << endl;
-				exit(1);
-		}
+	ifstream* file = new ifstream;
+	file->open(_fileName, ios_base::binary);
+	if(!file->is_open()){	
+		cout << "Error while opening file." << endl;
+		exit(1);
 	}
+
 
 	return file;
 }
