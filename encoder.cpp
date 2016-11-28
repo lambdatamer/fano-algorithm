@@ -58,7 +58,7 @@ void Encoder::encode(string &_fileName, string &_outputFileName){
 // Creates and writes the header and encoded string in the file
 void Encoder::makeOutputFile(map<char,string> &_charMap, string &_inputString, string &_fileName){
 
-	if(!(_fileName.substr(_fileName.length() - 5, 5) == ".fano")){
+	if(_fileName.length() < 5 || !(_fileName.substr(_fileName.length() - 5, 5) == ".fano")){
 		_fileName += ".fano"; 
 	}
 
