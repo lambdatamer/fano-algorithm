@@ -23,6 +23,11 @@ Character::Character(char _self, int _prob){
 	CharMap
 */
 
+//! Probmap is a map, that binds the symbol and its frequency of occurrence in the text
+//! Charmap is a map, that binds the symbol and its binary code, obtained by Fano algorithm
+//! Charvector is a mediator between Charmap and Probmap, that ensuring comfortable conversion
+// between them
+
 // Creates probMap sorted by alphabet
 map<char, int>* CharMap::createProbmap(string &_inputString){
 	int length = _inputString.length();

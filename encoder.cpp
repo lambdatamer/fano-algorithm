@@ -12,7 +12,6 @@
 using namespace std;
 
 // Simply opens the file.
-// The argument be text file with txt ext.
 ifstream* Encoder::openFile(string &_fileName){
 	ifstream* file = new ifstream;
 	file->open(_fileName, ios_base::binary);

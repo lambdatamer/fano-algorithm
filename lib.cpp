@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//Conversion functions
 string decToBin(int dec){
 	string bin;
 	int rem;

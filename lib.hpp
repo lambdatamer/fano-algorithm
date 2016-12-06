@@ -6,11 +6,13 @@
 
 using namespace std;
 
+//Comfortable logging function
 template<typename T>
 void log(T &_item){
 	cout << _item << endl;
 }
 
+//Conversion functions
 template <typename T>
 string toString(T _val)
 {

@@ -44,6 +44,7 @@ int Decoder::getDWordFromFile(ifstream &_file){
 	return *DWord;
 }
 
+//The Main function of Decoder
 void Decoder::decode(string _fileName, string _outputFileName){
 	ifstream &file = *(getInputFile(_fileName));
 	cout << "Decoding..." << endl;
@@ -76,6 +77,7 @@ void Decoder::createCodeLengths(ifstream &_file){
 	}
 }
 
+//Makes a Charmap from the header
 void Decoder::createCharMap(ifstream &_file){
 	string bitMap;
 	char buf;
