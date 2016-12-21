@@ -1,0 +1,114 @@
+\hypertarget{classEncoder}{}\section{Encoder Class Reference}
+\label{classEncoder}\index{Encoder@{Encoder}}
+
+
+\hyperlink{classEncoder}{Encoder} class.  
+
+
+
+
+{\ttfamily \#include $<$encoder.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classEncoder_a01393fbd422843fd26340c78131a7de7}{encode} (string \&\+\_\+file\+Name, string \&\+\_\+output\+File\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+ifstream $\ast$ \hyperlink{classEncoder_a636e0312215ea7d297159101c61de855}{open\+File} (string \&\+\_\+file\+Name)
+\item 
+string $\ast$ \hyperlink{classEncoder_ac86366cbee284da597931ec2b1853dab}{create\+String\+From\+Input\+File} (ifstream $\ast$\+\_\+file)
+\item 
+void \hyperlink{classEncoder_a0fb288546159a003eb44df92e9c9e29d}{make\+Output\+File} (map$<$ char, string $>$ \&\+\_\+char\+Map, string \&\+\_\+input\+String, string \&\+\_\+file\+Name)
+\item 
+void \hyperlink{classEncoder_a860228d804c226ca40f4610a7e2a2907}{write\+D\+Word\+To\+File} (ofstream \&\+\_\+file, int \+\_\+dword)
+\item 
+int \hyperlink{classEncoder_a6a5575ce8c40c213abbcefd591c813c9}{write\+Bin\+String\+To\+File} (ofstream \&\+\_\+file, string \&\+\_\+input\+String)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classEncoder}{Encoder} class. 
+
+Performs file encoding 
+
+\subsection{Member Function Documentation}
+\index{Encoder@{Encoder}!create\+String\+From\+Input\+File@{create\+String\+From\+Input\+File}}
+\index{create\+String\+From\+Input\+File@{create\+String\+From\+Input\+File}!Encoder@{Encoder}}
+\subsubsection[{\texorpdfstring{create\+String\+From\+Input\+File(ifstream $\ast$\+\_\+file)}{createStringFromInputFile(ifstream *_file)}}]{\setlength{\rightskip}{0pt plus 5cm}string $\ast$ Encoder\+::create\+String\+From\+Input\+File (
+\begin{DoxyParamCaption}
+\item[{ifstream $\ast$}]{\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEncoder_ac86366cbee284da597931ec2b1853dab}{}\label{classEncoder_ac86366cbee284da597931ec2b1853dab}
+Reads the file into string; 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & file in binary mode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string readed from \+\_\+file 
+\end{DoxyReturn}
+\index{Encoder@{Encoder}!encode@{encode}}
+\index{encode@{encode}!Encoder@{Encoder}}
+\subsubsection[{\texorpdfstring{encode(string \&\+\_\+file\+Name, string \&\+\_\+output\+File\+Name)}{encode(string &_fileName, string &_outputFileName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Encoder\+::encode (
+\begin{DoxyParamCaption}
+\item[{string \&}]{\+\_\+file\+Name, }
+\item[{string \&}]{\+\_\+output\+File\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{classEncoder_a01393fbd422843fd26340c78131a7de7}{}\label{classEncoder_a01393fbd422843fd26340c78131a7de7}
+Creates encoded file \index{Encoder@{Encoder}!make\+Output\+File@{make\+Output\+File}}
+\index{make\+Output\+File@{make\+Output\+File}!Encoder@{Encoder}}
+\subsubsection[{\texorpdfstring{make\+Output\+File(map$<$ char, string $>$ \&\+\_\+char\+Map, string \&\+\_\+input\+String, string \&\+\_\+file\+Name)}{makeOutputFile(map< char, string > &_charMap, string &_inputString, string &_fileName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Encoder\+::make\+Output\+File (
+\begin{DoxyParamCaption}
+\item[{map$<$ char, string $>$ \&}]{\+\_\+char\+Map, }
+\item[{string \&}]{\+\_\+input\+String, }
+\item[{string \&}]{\+\_\+file\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEncoder_a0fb288546159a003eb44df92e9c9e29d}{}\label{classEncoder_a0fb288546159a003eb44df92e9c9e29d}
+Creates and writes the header and encoded string in the file 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+char\+Map} & a char\+Map from a \hyperlink{classCharMap}{Char\+Map} class. \\
+\hline
+\end{DoxyParams}
+\index{Encoder@{Encoder}!open\+File@{open\+File}}
+\index{open\+File@{open\+File}!Encoder@{Encoder}}
+\subsubsection[{\texorpdfstring{open\+File(string \&\+\_\+file\+Name)}{openFile(string &_fileName)}}]{\setlength{\rightskip}{0pt plus 5cm}ifstream $\ast$ Encoder\+::open\+File (
+\begin{DoxyParamCaption}
+\item[{string \&}]{\+\_\+file\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEncoder_a636e0312215ea7d297159101c61de855}{}\label{classEncoder_a636e0312215ea7d297159101c61de855}
+Simply opens the file. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+Name} & file name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+file opened in binary mode 
+\end{DoxyReturn}
+\index{Encoder@{Encoder}!write\+Bin\+String\+To\+File@{write\+Bin\+String\+To\+File}}
+\index{write\+Bin\+String\+To\+File@{write\+Bin\+String\+To\+File}!Encoder@{Encoder}}
+\subsubsection[{\texorpdfstring{write\+Bin\+String\+To\+File(ofstream \&\+\_\+file, string \&\+\_\+input\+String)}{writeBinStringToFile(ofstream &_file, string &_inputString)}}]{\setlength{\rightskip}{0pt plus 5cm}int Encoder\+::write\+Bin\+String\+To\+File (
+\begin{DoxyParamCaption}
+\item[{ofstream \&}]{\+\_\+file, }
+\item[{string \&}]{\+\_\+input\+String}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEncoder_a6a5575ce8c40c213abbcefd591c813c9}{}\label{classEncoder_a6a5575ce8c40c213abbcefd591c813c9}
+Writes the string containing the \textquotesingle{}0\textquotesingle{}s and \textquotesingle{}1\textquotesingle{}s to the file \begin{DoxyReturn}{Returns}
+amount of the bytes had been written 
+\end{DoxyReturn}
+\index{Encoder@{Encoder}!write\+D\+Word\+To\+File@{write\+D\+Word\+To\+File}}
+\index{write\+D\+Word\+To\+File@{write\+D\+Word\+To\+File}!Encoder@{Encoder}}
+\subsubsection[{\texorpdfstring{write\+D\+Word\+To\+File(ofstream \&\+\_\+file, int \+\_\+dword)}{writeDWordToFile(ofstream &_file, int _dword)}}]{\setlength{\rightskip}{0pt plus 5cm}void Encoder\+::write\+D\+Word\+To\+File (
+\begin{DoxyParamCaption}
+\item[{ofstream \&}]{\+\_\+file, }
+\item[{int}]{\+\_\+dword}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classEncoder_a860228d804c226ca40f4610a7e2a2907}{}\label{classEncoder_a860228d804c226ca40f4610a7e2a2907}
+Writes int value binary to the file 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+encoder.\+hpp\item 
+encoder.\+cpp\end{DoxyCompactItemize}

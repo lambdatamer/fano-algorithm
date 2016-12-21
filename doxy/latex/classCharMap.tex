@@ -1,0 +1,153 @@
+\hypertarget{classCharMap}{}\section{Char\+Map Class Reference}
+\label{classCharMap}\index{Char\+Map@{Char\+Map}}
+
+
+\hyperlink{classCharMap}{Char\+Map} class.  
+
+
+
+
+{\ttfamily \#include $<$charmap.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ char, string $>$ $\ast$ \hyperlink{classCharMap_afded320bf55231b9a085e8debefcdb07}{create\+From\+Text} (string \&\+\_\+input\+String)
+\item 
+map$<$ char, string $>$ $\ast$ \hyperlink{classCharMap_ac524e3dded375fd05040a0136326d437}{get} ()
+\item 
+void \hyperlink{classCharMap_a27b231ec99c313ef2b60daa6f031bebe}{log} ()\hypertarget{classCharMap_a27b231ec99c313ef2b60daa6f031bebe}{}\label{classCharMap_a27b231ec99c313ef2b60daa6f031bebe}
+
+\begin{DoxyCompactList}\small\item\em Prints char\+Map to standart output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ char, int $>$ $\ast$ \hyperlink{classCharMap_a779aa6c2c004ff748005d16e19e27c57}{create\+Probmap} (string \&\+\_\+input\+String)
+\item 
+vector$<$ \hyperlink{classCharacter}{Character} $\ast$ $>$ $\ast$ \hyperlink{classCharMap_ac4aadff0c6d56414f7ce4c228d9aad5e}{create\+Char\+Vector} (map$<$ char, int $>$ \&\+\_\+prob\+Map)
+\item 
+void \hyperlink{classCharMap_aee0b17ddb4641c641ab36f623ddc6017}{create\+Branch} (int \+\_\+begin, int \+\_\+end, vector$<$ \hyperlink{classCharacter}{Character} $\ast$ $>$ \&\+\_\+vec)
+\item 
+int \hyperlink{classCharMap_af79927e3bdb5c9927bac14dc0c0882f1}{find\+Branching\+Point} (int \+\_\+begin, int \+\_\+end, vector$<$ \hyperlink{classCharacter}{Character} $\ast$ $>$ \&\+\_\+vec)
+\item 
+int \hyperlink{classCharMap_a0984bcde61be7fa7b604aa650c0f0c49}{seq\+Prob\+Sum} (int \+\_\+begin, int \+\_\+end, vector$<$ \hyperlink{classCharacter}{Character} $\ast$ $>$ \&\+\_\+vec)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ char, string $>$ $\ast$ \hyperlink{classCharMap_a462d94ee21e7e27b2bb02c1f7a3f455b}{self}\hypertarget{classCharMap_a462d94ee21e7e27b2bb02c1f7a3f455b}{}\label{classCharMap_a462d94ee21e7e27b2bb02c1f7a3f455b}
+
+\begin{DoxyCompactList}\small\item\em char\+Map itself, a map, that binds characters and their Fano codes \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classCharMap}{Char\+Map} class. 
+
+Presents tools for creating \hyperlink{classCharMap}{Char\+Map}, which is a map, that binds the symbol and its binary code, obtained by Fano algorithm 
+
+\subsection{Member Function Documentation}
+\index{Char\+Map@{Char\+Map}!create\+Branch@{create\+Branch}}
+\index{create\+Branch@{create\+Branch}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{create\+Branch(int \+\_\+begin, int \+\_\+end, vector$<$ Character $\ast$ $>$ \&\+\_\+vec)}{createBranch(int _begin, int _end, vector< Character * > &_vec)}}]{\setlength{\rightskip}{0pt plus 5cm}void Char\+Map\+::create\+Branch (
+\begin{DoxyParamCaption}
+\item[{int}]{\+\_\+begin, }
+\item[{int}]{\+\_\+end, }
+\item[{vector$<$ {\bf Character} $\ast$ $>$ \&}]{\+\_\+vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCharMap_aee0b17ddb4641c641ab36f623ddc6017}{}\label{classCharMap_aee0b17ddb4641c641ab36f623ddc6017}
+Recursively creates binary tree. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+begin} & group begin index \\
+\hline
+{\em \+\_\+end} & group end index \\
+\hline
+{\em \+\_\+vec} & char\+Vector \\
+\hline
+\end{DoxyParams}
+\index{Char\+Map@{Char\+Map}!create\+Char\+Vector@{create\+Char\+Vector}}
+\index{create\+Char\+Vector@{create\+Char\+Vector}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{create\+Char\+Vector(map$<$ char, int $>$ \&\+\_\+prob\+Map)}{createCharVector(map< char, int > &_probMap)}}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Character} $\ast$ $>$ $\ast$ Char\+Map\+::create\+Char\+Vector (
+\begin{DoxyParamCaption}
+\item[{map$<$ char, int $>$ \&}]{\+\_\+prob\+Map}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCharMap_ac4aadff0c6d56414f7ce4c228d9aad5e}{}\label{classCharMap_ac4aadff0c6d56414f7ce4c228d9aad5e}
+Creates a vector, which is a mediator between prob\+Map and char\+Map. It ensures comfortable conversion between them 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+prob\+Map} & prob\+Map \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char\+Vector 
+\end{DoxyReturn}
+\index{Char\+Map@{Char\+Map}!create\+From\+Text@{create\+From\+Text}}
+\index{create\+From\+Text@{create\+From\+Text}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{create\+From\+Text(string \&\+\_\+input\+String)}{createFromText(string &_inputString)}}]{\setlength{\rightskip}{0pt plus 5cm}map$<$ char, string $>$ $\ast$ Char\+Map\+::create\+From\+Text (
+\begin{DoxyParamCaption}
+\item[{string \&}]{\+\_\+input\+String}
+\end{DoxyParamCaption}
+)}\hypertarget{classCharMap_afded320bf55231b9a085e8debefcdb07}{}\label{classCharMap_afded320bf55231b9a085e8debefcdb07}
+Creates char\+Map from input\+String \index{Char\+Map@{Char\+Map}!create\+Probmap@{create\+Probmap}}
+\index{create\+Probmap@{create\+Probmap}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{create\+Probmap(string \&\+\_\+input\+String)}{createProbmap(string &_inputString)}}]{\setlength{\rightskip}{0pt plus 5cm}map$<$ char, int $>$ $\ast$ Char\+Map\+::create\+Probmap (
+\begin{DoxyParamCaption}
+\item[{string \&}]{\+\_\+input\+String}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCharMap_a779aa6c2c004ff748005d16e19e27c57}{}\label{classCharMap_a779aa6c2c004ff748005d16e19e27c57}
+Creates probability map that binds characters and their frequency of occurrence in the text \index{Char\+Map@{Char\+Map}!find\+Branching\+Point@{find\+Branching\+Point}}
+\index{find\+Branching\+Point@{find\+Branching\+Point}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{find\+Branching\+Point(int \+\_\+begin, int \+\_\+end, vector$<$ Character $\ast$ $>$ \&\+\_\+vec)}{findBranchingPoint(int _begin, int _end, vector< Character * > &_vec)}}]{\setlength{\rightskip}{0pt plus 5cm}int Char\+Map\+::find\+Branching\+Point (
+\begin{DoxyParamCaption}
+\item[{int}]{\+\_\+begin, }
+\item[{int}]{\+\_\+end, }
+\item[{vector$<$ {\bf Character} $\ast$ $>$ \&}]{\+\_\+vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCharMap_af79927e3bdb5c9927bac14dc0c0882f1}{}\label{classCharMap_af79927e3bdb5c9927bac14dc0c0882f1}
+Finds subgroups divide point. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+begin} & group begin index \\
+\hline
+{\em \+\_\+end} & group end index \\
+\hline
+{\em \+\_\+vec} & char\+Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+divide point 
+\end{DoxyReturn}
+\index{Char\+Map@{Char\+Map}!get@{get}}
+\index{get@{get}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{get()}{get()}}]{\setlength{\rightskip}{0pt plus 5cm}map$<$ char, string $>$ $\ast$ Char\+Map\+::get (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classCharMap_ac524e3dded375fd05040a0136326d437}{}\label{classCharMap_ac524e3dded375fd05040a0136326d437}
+Simply returns charmap. \begin{DoxyReturn}{Returns}
+char\+Map 
+\end{DoxyReturn}
+\index{Char\+Map@{Char\+Map}!seq\+Prob\+Sum@{seq\+Prob\+Sum}}
+\index{seq\+Prob\+Sum@{seq\+Prob\+Sum}!Char\+Map@{Char\+Map}}
+\subsubsection[{\texorpdfstring{seq\+Prob\+Sum(int \+\_\+begin, int \+\_\+end, vector$<$ Character $\ast$ $>$ \&\+\_\+vec)}{seqProbSum(int _begin, int _end, vector< Character * > &_vec)}}]{\setlength{\rightskip}{0pt plus 5cm}int Char\+Map\+::seq\+Prob\+Sum (
+\begin{DoxyParamCaption}
+\item[{int}]{\+\_\+begin, }
+\item[{int}]{\+\_\+end, }
+\item[{vector$<$ {\bf Character} $\ast$ $>$ \&}]{\+\_\+vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classCharMap_a0984bcde61be7fa7b604aa650c0f0c49}{}\label{classCharMap_a0984bcde61be7fa7b604aa650c0f0c49}
+Calculates group members summary probability. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+begin} & group begin index \\
+\hline
+{\em \+\_\+end} & group end index \\
+\hline
+{\em \+\_\+vec} & char\+Vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+summary probability 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+charmap.\+hpp\item 
+charmap.\+cpp\end{DoxyCompactItemize}

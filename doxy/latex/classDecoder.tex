@@ -1,0 +1,154 @@
+\hypertarget{classDecoder}{}\section{Decoder Class Reference}
+\label{classDecoder}\index{Decoder@{Decoder}}
+
+
+\hyperlink{classDecoder}{Decoder} class.  
+
+
+
+
+{\ttfamily \#include $<$decoder.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classDecoder_a58a00f7fcc05d4734727309c2725375f}{decode} (string \+\_\+file\+Name, string \+\_\+output\+File\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+ifstream $\ast$ \hyperlink{classDecoder_a27c84988ad41e51a3c968bbc3230b0dc}{get\+Input\+File} (string \&\+\_\+file\+Name)
+\item 
+int \hyperlink{classDecoder_a9a48c3df2256d5d17adb926030ff589f}{get\+D\+Word\+From\+File} (ifstream \&\+\_\+file)
+\item 
+void \hyperlink{classDecoder_ad26e1ce5bf9a96e576e662bdaed9b327}{disassembly} (ifstream \&\+\_\+file)
+\item 
+void \hyperlink{classDecoder_a7f788da286d8264414ae867c61ade0cc}{create\+Code\+Lengths} (ifstream \&\+\_\+file)
+\item 
+void \hyperlink{classDecoder_a36d6c189eaa1a68e9f495f4b86e8b551}{create\+Char\+Map} (ifstream \&\+\_\+file)
+\item 
+void \hyperlink{classDecoder_a74689c683481e7c3ea67ee4d8792efa4}{decode\+Text} (ifstream \&\+\_\+file)
+\item 
+void \hyperlink{classDecoder_a8d26727f97c511a5219236f323fce474}{make\+Output\+File} (string \&\+\_\+file\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classDecoder_a21ea25313ec87b94185eafb51da7e15d}{char\+Map\+Size}\hypertarget{classDecoder_a21ea25313ec87b94185eafb51da7e15d}{}\label{classDecoder_a21ea25313ec87b94185eafb51da7e15d}
+
+\begin{DoxyCompactList}\small\item\em char\+Map length in a header \end{DoxyCompactList}\item 
+int \hyperlink{classDecoder_a0eaa7c0c02c4c55d4e1080f3fb35fb07}{bit\+Map\+Length}\hypertarget{classDecoder_a0eaa7c0c02c4c55d4e1080f3fb35fb07}{}\label{classDecoder_a0eaa7c0c02c4c55d4e1080f3fb35fb07}
+
+\begin{DoxyCompactList}\small\item\em bit\+Map length in a header \end{DoxyCompactList}\item 
+int \hyperlink{classDecoder_a42530dfe1c682188ee3abf2594bc636e}{data\+Pointer}\hypertarget{classDecoder_a42530dfe1c682188ee3abf2594bc636e}{}\label{classDecoder_a42530dfe1c682188ee3abf2594bc636e}
+
+\begin{DoxyCompactList}\small\item\em position of encoded data \end{DoxyCompactList}\item 
+map$<$ char, int $>$ $\ast$ \hyperlink{classDecoder_a6369e8fbf85e15c78f4a559289ba8d32}{code\+Lengths}\hypertarget{classDecoder_a6369e8fbf85e15c78f4a559289ba8d32}{}\label{classDecoder_a6369e8fbf85e15c78f4a559289ba8d32}
+
+\begin{DoxyCompactList}\small\item\em information about symbols code lengths \end{DoxyCompactList}\item 
+map$<$ char, string $>$ $\ast$ \hyperlink{classDecoder_afb5141532719024337576680947c050b}{char\+Map}\hypertarget{classDecoder_afb5141532719024337576680947c050b}{}\label{classDecoder_afb5141532719024337576680947c050b}
+
+\begin{DoxyCompactList}\small\item\em decoding charmap \end{DoxyCompactList}\item 
+string {\bfseries decoded\+Text}\hypertarget{classDecoder_a9138a6ec9e73a3485e6dd4f99602e8b3}{}\label{classDecoder_a9138a6ec9e73a3485e6dd4f99602e8b3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classDecoder}{Decoder} class. 
+
+\subsection{Member Function Documentation}
+\index{Decoder@{Decoder}!create\+Char\+Map@{create\+Char\+Map}}
+\index{create\+Char\+Map@{create\+Char\+Map}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{create\+Char\+Map(ifstream \&\+\_\+file)}{createCharMap(ifstream &_file)}}]{\setlength{\rightskip}{0pt plus 5cm}void Decoder\+::create\+Char\+Map (
+\begin{DoxyParamCaption}
+\item[{ifstream \&}]{\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_a36d6c189eaa1a68e9f495f4b86e8b551}{}\label{classDecoder_a36d6c189eaa1a68e9f495f4b86e8b551}
+Makes a Charmap from the header 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & file in binary mode \\
+\hline
+\end{DoxyParams}
+\index{Decoder@{Decoder}!create\+Code\+Lengths@{create\+Code\+Lengths}}
+\index{create\+Code\+Lengths@{create\+Code\+Lengths}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{create\+Code\+Lengths(ifstream \&\+\_\+file)}{createCodeLengths(ifstream &_file)}}]{\setlength{\rightskip}{0pt plus 5cm}void Decoder\+::create\+Code\+Lengths (
+\begin{DoxyParamCaption}
+\item[{ifstream \&}]{\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_a7f788da286d8264414ae867c61ade0cc}{}\label{classDecoder_a7f788da286d8264414ae867c61ade0cc}
+Reads code\+Lengths map required for char\+Map from a header of the file 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & file in binary mode \\
+\hline
+\end{DoxyParams}
+\index{Decoder@{Decoder}!decode@{decode}}
+\index{decode@{decode}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{decode(string \+\_\+file\+Name, string \+\_\+output\+File\+Name)}{decode(string _fileName, string _outputFileName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Decoder\+::decode (
+\begin{DoxyParamCaption}
+\item[{string}]{\+\_\+file\+Name, }
+\item[{string}]{\+\_\+output\+File\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{classDecoder_a58a00f7fcc05d4734727309c2725375f}{}\label{classDecoder_a58a00f7fcc05d4734727309c2725375f}
+Decodes file \index{Decoder@{Decoder}!decode\+Text@{decode\+Text}}
+\index{decode\+Text@{decode\+Text}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{decode\+Text(ifstream \&\+\_\+file)}{decodeText(ifstream &_file)}}]{\setlength{\rightskip}{0pt plus 5cm}void Decoder\+::decode\+Text (
+\begin{DoxyParamCaption}
+\item[{ifstream \&}]{\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_a74689c683481e7c3ea67ee4d8792efa4}{}\label{classDecoder_a74689c683481e7c3ea67ee4d8792efa4}
+Decodes text using char\+Map 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & file in binary mode \\
+\hline
+\end{DoxyParams}
+\index{Decoder@{Decoder}!disassembly@{disassembly}}
+\index{disassembly@{disassembly}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{disassembly(ifstream \&\+\_\+file)}{disassembly(ifstream &_file)}}]{\setlength{\rightskip}{0pt plus 5cm}void Decoder\+::disassembly (
+\begin{DoxyParamCaption}
+\item[{ifstream \&}]{\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_ad26e1ce5bf9a96e576e662bdaed9b327}{}\label{classDecoder_ad26e1ce5bf9a96e576e662bdaed9b327}
+Processes header reads charmap info, creating decode char\+Map 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & file in binary mode \\
+\hline
+\end{DoxyParams}
+\index{Decoder@{Decoder}!get\+D\+Word\+From\+File@{get\+D\+Word\+From\+File}}
+\index{get\+D\+Word\+From\+File@{get\+D\+Word\+From\+File}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{get\+D\+Word\+From\+File(ifstream \&\+\_\+file)}{getDWordFromFile(ifstream &_file)}}]{\setlength{\rightskip}{0pt plus 5cm}int Decoder\+::get\+D\+Word\+From\+File (
+\begin{DoxyParamCaption}
+\item[{ifstream \&}]{\+\_\+file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_a9a48c3df2256d5d17adb926030ff589f}{}\label{classDecoder_a9a48c3df2256d5d17adb926030ff589f}
+Read int value from the file 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file} & file in binary mode \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int value 
+\end{DoxyReturn}
+\index{Decoder@{Decoder}!get\+Input\+File@{get\+Input\+File}}
+\index{get\+Input\+File@{get\+Input\+File}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{get\+Input\+File(string \&\+\_\+file\+Name)}{getInputFile(string &_fileName)}}]{\setlength{\rightskip}{0pt plus 5cm}ifstream $\ast$ Decoder\+::get\+Input\+File (
+\begin{DoxyParamCaption}
+\item[{string \&}]{\+\_\+file\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_a27c84988ad41e51a3c968bbc3230b0dc}{}\label{classDecoder_a27c84988ad41e51a3c968bbc3230b0dc}
+Prepairing the file for decoding. Expects .fano file. \begin{DoxyReturn}{Returns}
+file opened in binary mode 
+\end{DoxyReturn}
+\index{Decoder@{Decoder}!make\+Output\+File@{make\+Output\+File}}
+\index{make\+Output\+File@{make\+Output\+File}!Decoder@{Decoder}}
+\subsubsection[{\texorpdfstring{make\+Output\+File(string \&\+\_\+file\+Name)}{makeOutputFile(string &_fileName)}}]{\setlength{\rightskip}{0pt plus 5cm}void Decoder\+::make\+Output\+File (
+\begin{DoxyParamCaption}
+\item[{string \&}]{\+\_\+file\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classDecoder_a8d26727f97c511a5219236f323fce474}{}\label{classDecoder_a8d26727f97c511a5219236f323fce474}
+Makes output file 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+decoder.\+hpp\item 
+decoder.\+cpp\end{DoxyCompactItemize}

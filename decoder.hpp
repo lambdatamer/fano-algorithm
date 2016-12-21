@@ -5,13 +5,20 @@
 
 using namespace std;
 
+/// Decoder class
+
 class Decoder{
 private:
-	// Header
+	//File header
+	/// charMap length in a header
 	int charMapSize;
+	/// bitMap length in a header
 	int bitMapLength;
+	/// position of encoded data
 	int dataPointer;
+	/// information about symbols code lengths 
 	map<char, int>* codeLengths;
+	/// decoding charmap
 	map<char, string>* charMap;
 	string decodedText;
 

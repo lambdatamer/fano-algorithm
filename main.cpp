@@ -7,9 +7,11 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]){
+/**
+ * Processes user input
+ */
 
-	setlocale(LC_CTYPE, "rus");
+int main(int argc, char* argv[]){
 
 	if(argc < 2){
 		printShortHelp();
@@ -44,11 +46,19 @@ int main(int argc, char* argv[]){
 	return 0;
 }
 
+/**
+ * Prints full help
+ */
+
 void printHelp(){
 	cout << "usage: fano <mode> <input> [-o <output>]" << endl;
 	cout << "\n\tmode:\t-e\tEncode file" << endl;
 	cout << "\t\t-d\tDecode file" << endl;
 }
+
+/**
+ * Prints short help, without a parameters explanation
+ */
 
 void printShortHelp(){
 	cout << "usage: fano <mode> <input> [-o <output>]" << endl;

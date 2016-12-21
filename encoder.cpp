@@ -11,7 +11,11 @@
 
 using namespace std;
 
-// Simply opens the file.
+/** 
+ * Simply opens the file.
+ * @param _fileName file name
+ * @return file opened in binary mode
+ */
 ifstream* Encoder::openFile(string &_fileName){
 	ifstream* file = new ifstream;
 	file->open(_fileName, ios_base::binary);
@@ -24,7 +28,10 @@ ifstream* Encoder::openFile(string &_fileName){
 	return file;
 }
 
-// Return a string readed from _file
+/** Reads the file into string;
+ * @param _file file in binary mode
+ * @return string readed from _file
+ */
 string* Encoder::createStringFromInputFile(ifstream *_file){
 	ifstream &file = *_file;
 	char tmp;
@@ -41,7 +48,8 @@ string* Encoder::createStringFromInputFile(ifstream *_file){
 	return inputString;
 }
 
-// Creates encoded file
+/** Creates encoded file
+ */
 void Encoder::encode(string &_fileName, string &_outputFileName){
 	string fileName(_fileName);
 
@@ -54,7 +62,9 @@ void Encoder::encode(string &_fileName, string &_outputFileName){
 	delete inputString;
 }
 
-// Creates and writes the header and encoded string in the file
+/** Creates and writes the header and encoded string in the file
+ * @param _charMap a charMap from a CharMap class.
+ */
 void Encoder::makeOutputFile(map<char,string> &_charMap, string &_inputString, string &_fileName){
 
 	if(_fileName.length() < 5 || !(_fileName.substr(_fileName.length() - 5, 5) == ".fano")){
@@ -97,7 +107,8 @@ void Encoder::makeOutputFile(map<char,string> &_charMap, string &_inputString, s
 	delete data;
 }
 
-// Writes int value binary to the file
+/** Writes int value binary to the file 
+ */
 void Encoder::writeDWordToFile(ofstream &_file, int _dword){
 	int* ptr = &_dword;
 
@@ -106,8 +117,9 @@ void Encoder::writeDWordToFile(ofstream &_file, int _dword){
 	_file.write(c, 4);
 } 
 
-// Writes the string containing the '0's and '1's to the file
-// Returns amount of the bytes had been written
+/** Writes the string containing the '0's and '1's to the file
+ * @return amount of the bytes had been written
+ */
 int Encoder::writeBinStringToFile(ofstream &_file, string &_inputString){
 	int counter = 0;
 	int len = _inputString.length();

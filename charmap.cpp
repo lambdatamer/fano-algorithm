@@ -9,9 +9,10 @@
 
 using namespace std;
 
-/*
-	Character
-*/
+/**
+ * @param _self character in ASCII
+ * @param _prob character's probability
+ */
 
 Character::Character(char _self, int _prob){
 	self = _self;
@@ -19,16 +20,10 @@ Character::Character(char _self, int _prob){
 	code = "";
 }
 
-/*
-	CharMap
-*/
-
-//! Probmap is a map, that binds the symbol and its frequency of occurrence in the text
-//! Charmap is a map, that binds the symbol and its binary code, obtained by Fano algorithm
-//! Charvector is a mediator between Charmap and Probmap, that ensuring comfortable conversion
-// between them
-
-// Creates probMap sorted by alphabet
+/** 
+ * Creates probability map that binds characters and their
+ * frequency of occurrence in the text
+ */
 map<char, int>* CharMap::createProbmap(string &_inputString){
 	int length = _inputString.length();
 	auto probMap = new map<char, int>;
@@ -46,12 +41,18 @@ map<char, int>* CharMap::createProbmap(string &_inputString){
 	return probMap;
 }
 
-// The compare function for sort in createCharVector
+
+/// A compare function for sort in createCharVector
 bool characterCompare(Character* _first, Character* _second){
 	return _first->prob < _second->prob;
 }
 
-// Creates the charVector and sort it by probability
+/** 
+ * Creates a vector, which is a mediator between probMap and charMap.
+ * It ensures comfortable conversion between them
+ * @param _probMap probMap
+ * @return charVector
+ */
 vector<Character*>* CharMap::createCharVector(map<char, int> &_probMap){
 	auto charVector = new vector<Character*>;
 
@@ -65,16 +66,17 @@ vector<Character*>* CharMap::createCharVector(map<char, int> &_probMap){
 	return charVector;
 }
 
-// Creates the complete charmap sorted by alphabet
+/** Creates charMap from inputString
+ */
 map<char, string>* CharMap::createFromText(string &_inputString){
 	if(_inputString.length() == 0) exit(1);
 	auto probMap = createProbmap(_inputString);
 	auto charVector = createCharVector(*probMap);
 	delete probMap;
-
 	createBranch(0, charVector->size(), *charVector);
 
 	auto charMap = new map<char, string>;
+	
 	self = charMap; 
 	for(int i = 0; i < charVector->size(); i++){
 		charMap->insert(
@@ -90,7 +92,11 @@ map<char, string>* CharMap::createFromText(string &_inputString){
 	return charMap;
 }
 
-// Recursively creates a binary tree 
+/** Recursively creates binary tree.
+ * @param _begin group begin index
+ * @param _end group end index
+ * @param _vec charVector
+ */
 void CharMap::createBranch(int _begin, int _end, vector<Character*> &_vec){
 	if(_end == _begin){
 		return;
@@ -113,7 +119,12 @@ void CharMap::createBranch(int _begin, int _end, vector<Character*> &_vec){
 	}
 }
 
-// Finds a branching point of two branches with related probability
+/** Finds subgroups divide point.
+ * @param _begin group begin index
+ * @param _end group end index
+ * @param _vec charVector
+ * @return divide point
+ */
 int CharMap::findBranchingPoint(int _begin, int _end, vector<Character*> &_vec){
 	vector<int> differences;
 	int tmp;
@@ -137,7 +148,12 @@ int CharMap::findBranchingPoint(int _begin, int _end, vector<Character*> &_vec){
 	return _begin + index;
 }
 
-// Returns sum of probabilities of chars between _begin_ and _end_ in _vec_.
+/** Calculates group members summary probability.
+ * @param _begin group begin index
+ * @param _end group end index
+ * @param _vec charVector
+ * @return summary probability
+ */
 int CharMap::seqProbSum(int _begin, int _end, vector<Character*> &_vec){
 	int sum = 0;
 	for(int i = _begin; i < _end; i++){
@@ -147,12 +163,14 @@ int CharMap::seqProbSum(int _begin, int _end, vector<Character*> &_vec){
 	return sum;
 }
 
-// Simply returns charmap
+/** Simply returns charmap.
+ * @return charMap
+ */
 map<char, string>* CharMap::get(){
 	return self;
 }
 
-// Prints charmap to console
+/// Prints charMap to standart output
 void CharMap::log(){
 	for(auto character: *self){
 		cout << "'" << character.first << "' : " << character.second << endl;

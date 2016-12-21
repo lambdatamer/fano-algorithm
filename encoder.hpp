@@ -6,6 +6,11 @@
 
 using namespace std;
 
+
+///Encoder class
+/** 
+ * Performs file encoding
+ */
 class Encoder{
 private:
 	ifstream* openFile(string &_fileName);

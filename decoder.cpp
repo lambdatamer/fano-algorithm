@@ -8,7 +8,11 @@
 
 using namespace std;
 
-//Prepairing the file for decoding
+/**
+ * Prepairing the file for decoding.
+ * Expects .fano file.
+ * @return file opened in binary mode
+ */
 ifstream* Decoder::getInputFile(string &_fileName){
 	ifstream* file;
 
@@ -36,7 +40,11 @@ ifstream* Decoder::getInputFile(string &_fileName){
 	return file;
 }
 
-//Read int value from the file
+/**
+ * Read int value from the file
+ * @param _file file in binary mode
+ * @return int value
+ */
 int Decoder::getDWordFromFile(ifstream &_file){
 	char buf[4];
 	_file.read(buf, 4);
@@ -44,7 +52,8 @@ int Decoder::getDWordFromFile(ifstream &_file){
 	return *DWord;
 }
 
-//The Main function of Decoder
+/** Decodes file
+ */
 void Decoder::decode(string _fileName, string _outputFileName){
 	ifstream &file = *(getInputFile(_fileName));
 	cout << "Decoding..." << endl;
@@ -54,7 +63,10 @@ void Decoder::decode(string _fileName, string _outputFileName){
 	cout << "Done." << endl;
 }
 
-//Processes header
+/** Processes header
+ * reads charmap info, creating decode charMap
+ * @param _file file in binary mode
+ */
 void Decoder::disassembly(ifstream &_file){
 	charMapSize = getDWordFromFile(_file);
 	bitMapLength = getDWordFromFile(_file);
@@ -64,7 +76,10 @@ void Decoder::disassembly(ifstream &_file){
 	createCharMap(_file);
 }
 
-//Reads codeLengths map required for charMap from a header of the file
+/** Reads codeLengths 
+ * map required for charMap from a header of the file
+ * @param _file file in binary mode
+ */
 void Decoder::createCodeLengths(ifstream &_file){
 	char character, length;
 	int lengthCast;
@@ -77,7 +92,9 @@ void Decoder::createCodeLengths(ifstream &_file){
 	}
 }
 
-//Makes a Charmap from the header
+/** Makes a Charmap from the header
+ * @param _file file in binary mode
+ */
 void Decoder::createCharMap(ifstream &_file){
 	string bitMap;
 	char buf;
@@ -98,7 +115,9 @@ void Decoder::createCharMap(ifstream &_file){
 	}
 }
 
-//Decodes text using charMap
+/** Decodes text using charMap
+ * @param _file file in binary mode
+ */
 void Decoder::decodeText(ifstream &_file){
 	string &encoded = *(new string);
 	char tmp;
@@ -120,7 +139,8 @@ void Decoder::decodeText(ifstream &_file){
 		}
 	}
 }
-
+/** Makes output file
+ */
 void Decoder::makeOutputFile(string &_fileName){
 	ofstream file;
 	file.open(_fileName, ios_base::binary);
