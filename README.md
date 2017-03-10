@@ -1,4 +1,4 @@
-# Shannon-Fano .txt compressor.
+# Shannon-Fano file compressor.
 
 usage: fano \<mode> \<input> [-o \<output>]
 
